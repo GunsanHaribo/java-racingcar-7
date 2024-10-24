@@ -3,9 +3,6 @@ package racingcar;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.List;
-
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -22,6 +19,20 @@ class ApplicationTest extends NsTest {
         int movingTime = 5;
 
         assertThatThrownBy(() -> Application.moveCar(carName, movingTime)).isInstanceOf(IllegalArgumentException.class).hasMessage(NAME_OVER_FIVE);
+    }
+
+    @Test
+    void 차가_움직이는_거리가_4미만시_0을_반환_테스트() {
+        Car car = new Car("pobi");
+        int result = car.validateMovement(1);
+        assertThat(result).isEqualTo(0);
+    }
+
+    @Test
+    void 차가_움직이는_거리가_4이상시_정상반환_테스트() {
+        Car car = new Car("pobi");
+        int result = car.validateMovement(4);
+        assertThat(result).isEqualTo(4);
     }
 
     @Test
