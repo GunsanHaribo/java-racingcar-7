@@ -1,7 +1,26 @@
 package racingcar;
 
+
+import camp.nextstep.edu.missionutils.Console;
+
+import java.util.Arrays;
+import java.util.List;
+
 public class Application {
+
+    public static final String NAME_OVER_FIVE = "이름이 5자리 이상입니다";
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        String carName = Console.readLine();
+        int movingTime = Integer.parseInt(Console.readLine());
+        String result = moveCar(carName, movingTime);
+        System.out.println(result);
+    }
+
+    public static String moveCar(String carName, int moveTime) {
+        List<String> carNames = Arrays.stream(carName.split(",")).toList();
+        if(carNames.size() > 5){
+            throw new IllegalArgumentException(NAME_OVER_FIVE);
+        }
+        return carNames.toString();
     }
 }
